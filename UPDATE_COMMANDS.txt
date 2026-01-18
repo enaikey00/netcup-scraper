@@ -1,0 +1,129 @@
+┌──────────────────────────────────────────────────────────────┐
+│                                                              │
+│          ✨ AGGIORNAMENTO: COMANDI TELEGRAM ✨              │
+│                                                              │
+└──────────────────────────────────────────────────────────────┘
+
+🎉 NUOVE FUNZIONALITÀ AGGIUNTE!
+═══════════════════════════════════════════════════════════════
+
+Il bot ora supporta comandi interattivi! Puoi controllare i VPS
+quando vuoi, senza aspettare il check automatico orario.
+
+📱 COMANDI DISPONIBILI
+═══════════════════════════════════════════════════════════════
+
+/check   → Controlla subito la disponibilità
+          Risposta in max 5 minuti!
+
+/help    → Lista dei comandi
+
+/status  → Stato del monitoraggio
+
+
+🚀 COME FUNZIONA
+═══════════════════════════════════════════════════════════════
+
+1. Invii /check al bot su Telegram
+2. GitHub Actions controlla ogni 5 minuti se ci sono comandi
+3. Quando trova /check, esegue il controllo VPS
+4. Ricevi i risultati su Telegram!
+
+
+📋 COSA FARE ADESSO
+═══════════════════════════════════════════════════════════════
+
+Se hai GIÀ fatto il setup iniziale:
+
+  1. Fai commit e push dei nuovi file:
+     
+     git add .
+     git commit -m "Add Telegram commands support"
+     git push
+
+  2. Aspetta ~1 minuto che GitHub Actions carichi il nuovo workflow
+
+  3. Testa inviando /check al bot!
+
+Se NON hai ancora fatto il setup:
+
+  1. Segui SETUP_GUIDE.md per la configurazione iniziale
+  2. I comandi saranno già inclusi!
+
+
+🧪 TEST IN LOCALE (opzionale)
+═══════════════════════════════════════════════════════════════
+
+Prima di fare push, puoi testare i comandi:
+
+  python test_commands_local.py
+
+Segui le istruzioni interattive!
+
+
+📄 NUOVI FILE AGGIUNTI
+═══════════════════════════════════════════════════════════════
+
+• telegram_command_handler.py
+  → Script che gestisce i comandi
+
+• .github/workflows/check-commands.yml
+  → Workflow che controlla i comandi ogni 5 minuti
+
+• test_commands_local.py
+  → Script per testare i comandi in locale
+
+• TELEGRAM_COMMANDS.md
+  → Documentazione completa dei comandi
+
+
+📊 WORKFLOW MODIFICATI
+═══════════════════════════════════════════════════════════════
+
+• scraper_github_actions.py
+  → Ora distingue tra check automatici e manuali
+  → I check manuali inviano sempre notifica
+
+• README_GITHUB.md
+  → Aggiunta sezione comandi
+
+
+⚡ DIFFERENZE TRA CHECK AUTOMATICO E MANUALE
+═══════════════════════════════════════════════════════════════
+
+Check AUTOMATICO (ogni ora):
+  ⏰ Parte automaticamente
+  🔕 Notifica solo se cambia qualcosa
+  
+Check MANUALE (comando /check):
+  👆 Parte quando lo richiedi
+  📱 Notifica SEMPRE (anche se tutto sold out)
+  ⚡ Risposta in max 5 minuti
+
+
+💡 QUANDO USARE /check
+═══════════════════════════════════════════════════════════════
+
+• Quando senti parlare di un restock imminente
+• Prima di andare a dormire
+• Durante la giornata se vuoi un check rapido
+• Quando sei ansioso di controllare! 😄
+
+
+🎯 PROSSIMI PASSI
+═══════════════════════════════════════════════════════════════
+
+1. Fai commit e push (se già configurato)
+   oppure
+   Segui SETUP_GUIDE.md (se nuova installazione)
+
+2. Invia /check al bot per testare!
+
+3. Leggi TELEGRAM_COMMANDS.md per tutti i dettagli
+
+
+═══════════════════════════════════════════════════════════════
+
+Domande? Fammi sapere! 🚀
+
+═══════════════════════════════════════════════════════════════

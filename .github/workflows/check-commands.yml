@@ -1,0 +1,68 @@
+name: Check Telegram Commands
+
+on:
+  schedule:
+    # Controlla ogni 5 minuti se ci sono nuovi comandi
+    - cron: '*/5 * * * *'
+  workflow_dispatch:  # Permette esecuzione manuale
+
+jobs:
+  check-commands:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+    
+    - name: Download last update ID artifact
+      uses: actions/download-artifact@v4
+      continue-on-error: true
+      with:
+        name: last-update-id
+        path: .
+    
+    - name: Check for commands
+      id: check_commands
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      run: |
+        python telegram_command_handler.py
+        echo "check_requested=$?" >> $GITHUB_OUTPUT
+      continue-on-error: true
+    
+    - name: Upload last update ID artifact
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: last-update-id
+        path: last_update_id.txt
+        retention-days: 7
+    
+    - name: Trigger VPS check if requested
+      if: steps.check_commands.outputs.check_requested == '0'
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        MANUAL_CHECK: 'true'
+      run: |
+        pip install -r requirements_light.txt
+        python scraper_github_actions.py
+    
+    - name: Upload availability log
+      uses: actions/upload-artifact@v4
+      if: steps.check_commands.outputs.check_requested == '0'
+      with:
+        name: availability-log-manual-${{ github.run_number }}
+        path: availability_log.json
+        retention-days: 30

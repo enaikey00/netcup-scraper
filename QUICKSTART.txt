@@ -35,6 +35,7 @@
 □ STEP 6: Rilassati! ✨
   └─ Da ora controlla automaticamente ogni ora
   └─ Ricevi notifiche solo quando cambia qualcosa
+  └─ Invia /check al bot per controlli on-demand!
 
 
 ═══════════════════════════════════════════════════════════════

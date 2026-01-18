@@ -11,10 +11,12 @@ Scraper automatico che controlla ogni ora la disponibilità dei VPS ARM su netcu
 
 ## ⚡ Features
 - ✅ Controlli automatici ogni ora tramite GitHub Actions
+- 🤖 **NUOVO: Comandi interattivi!** Invia `/check` al bot per controlli on-demand
 - 📱 Notifiche Telegram quando un prodotto diventa disponibile
 - 📊 Storico completo salvato come artifact su GitHub
 - 🆓 Completamente gratuito (GitHub Actions free tier)
 - 🔔 Notifiche solo quando cambia lo stato (evita spam)
+- ⚡ Risposta ai comandi in max 5 minuti
 
 ## 🚀 Setup
 
@@ -111,6 +113,16 @@ PRODUCTS = [
     # Aggiungi altri prodotti qui
 ]
 ```
+
+## 🤖 Comandi Bot Telegram
+
+Il bot supporta comandi interattivi! Invia questi comandi al bot su Telegram:
+
+- `/check` - Richiedi un controllo immediato (risposta in max 5 minuti)
+- `/help` - Mostra i comandi disponibili
+- `/status` - Mostra lo stato del monitoraggio
+
+📄 Vedi [TELEGRAM_COMMANDS.md](TELEGRAM_COMMANDS.md) per la guida completa ai comandi.
 
 ## 📊 Visualizzare lo storico
 

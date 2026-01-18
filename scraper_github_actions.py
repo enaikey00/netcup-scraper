@@ -161,11 +161,14 @@ def save_results(results):
         print(f"❌ Errore nel salvare i risultati: {e}")
 
 
-def format_telegram_message(results, previous_results=None):
+def format_telegram_message(results, previous_results=None, manual_check=False):
     """Formatta il messaggio per Telegram"""
     now = datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')
     
-    message = f"🔍 <b>Netcup VPS ARM Check</b>\n"
+    if manual_check:
+        message = f"🔍 <b>Netcup VPS ARM Check</b> (richiesto manualmente)\n"
+    else:
+        message = f"🔍 <b>Netcup VPS ARM Check</b>\n"
     message += f"📅 {now}\n\n"
     
     any_available = False
@@ -205,8 +208,14 @@ def format_telegram_message(results, previous_results=None):
 
 def main():
     """Funzione principale"""
+    # Controlla se è un check manuale (triggherato da comando)
+    manual_check = os.environ.get('MANUAL_CHECK', 'false').lower() == 'true'
+    
     print("=" * 60)
-    print(f"🤖 Netcup VPS ARM Availability Check - GitHub Actions")
+    if manual_check:
+        print(f"🤖 Netcup VPS ARM Check - MANUALE (da comando /check)")
+    else:
+        print(f"🤖 Netcup VPS ARM Availability Check - GitHub Actions")
     print(f"⏰ {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
     print()
@@ -224,12 +233,13 @@ def main():
     save_results(results)
     
     # Prepara messaggio Telegram
-    message, any_available, changes_detected = format_telegram_message(results, previous_results)
+    message, any_available, changes_detected = format_telegram_message(results, previous_results, manual_check)
     
     # Invia notifica Telegram solo se:
-    # 1. C'è almeno un prodotto disponibile, OPPURE
-    # 2. C'è stato un cambio di stato
-    should_notify = any_available or changes_detected
+    # 1. È un check manuale (invia sempre), OPPURE
+    # 2. C'è almeno un prodotto disponibile, OPPURE
+    # 3. C'è stato un cambio di stato
+    should_notify = manual_check or any_available or changes_detected
     
     if should_notify:
         print("\n📱 Invio notifica Telegram...")
