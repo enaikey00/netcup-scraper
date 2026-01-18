@@ -1,0 +1,119 @@
+┌──────────────────────────────────────────────────────────────┐
+│                                                              │
+│   🚀 QUICK START - Netcup VPS Scraper con GitHub Actions    │
+│                                                              │
+└──────────────────────────────────────────────────────────────┘
+
+📋 CHECKLIST VELOCE (30 minuti totali)
+═══════════════════════════════════════════════════════════════
+
+□ STEP 1: Crea il Bot Telegram (5 min)
+  └─ Telegram → cerca @BotFather → /newbot
+  └─ Salva il TOKEN
+
+□ STEP 2: Ottieni Chat ID (2 min)
+  └─ Telegram → cerca @userinfobot → /start
+  └─ Salva il CHAT ID
+
+□ STEP 3: Test in locale (opzionale, 5 min)
+  └─ python test_telegram.py
+  └─ Incolla token e chat ID
+  └─ Verifica di ricevere il messaggio
+
+□ STEP 4: Carica su GitHub (10 min)
+  └─ Crea nuovo repository su github.com
+  └─ Carica tutti i file della cartella
+  └─ Settings → Secrets → Aggiungi:
+     • TELEGRAM_BOT_TOKEN
+     • TELEGRAM_CHAT_ID
+
+□ STEP 5: Attiva e testa (5 min)
+  └─ Actions → Enable workflows
+  └─ Run workflow manualmente
+  └─ Controlla di ricevere il messaggio!
+
+□ STEP 6: Rilassati! ✨
+  └─ Da ora controlla automaticamente ogni ora
+  └─ Ricevi notifiche solo quando cambia qualcosa
+
+
+═══════════════════════════════════════════════════════════════
+
+📁 STRUTTURA FILE IMPORTANTI
+
+Per GitHub (committare tutto):
+  ├─ .github/workflows/check-availability.yml  ← Workflow automation
+  ├─ scraper_github_actions.py                 ← Script principale
+  ├─ requirements_light.txt                     ← Dipendenze
+  ├─ config.json                                ← Configurazione prodotti
+  └─ README_GITHUB.md                           ← Documentazione
+
+Per test in locale (opzionale):
+  ├─ test_telegram.py                           ← Testa notifiche
+  ├─ test_scenarios.py                          ← Simula scenari
+  └─ scraper_light.py                           ← Versione locale
+
+═══════════════════════════════════════════════════════════════
+
+🎯 COMANDI RAPIDI
+
+# Test notifiche Telegram in locale
+python test_telegram.py
+
+# Test scraper in locale (un controllo singolo)
+python scraper_github_actions.py
+
+# Simula scenari diversi per test
+python test_scenarios.py
+
+# Upload su GitHub (dalla cartella del progetto)
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/TUO_USERNAME/netcup-scraper.git
+git branch -M main
+git push -u origin main
+
+═══════════════════════════════════════════════════════════════
+
+💡 TIPS & TRICKS
+
+• Il primo check automatico potrebbe richiedere fino a 1 ora
+• Usa "Run workflow" per testare immediatamente
+• Ricevi notifiche SOLO quando cambia lo stato (no spam!)
+• Gli artifacts mantengono lo storico per 30 giorni
+• GitHub Actions free tier = 2000 min/mese (più che sufficiente)
+
+═══════════════════════════════════════════════════════════════
+
+🐛 TROUBLESHOOTING VELOCE
+
+❌ "Not Found" su GitHub Actions
+   → Controlla che i secrets siano configurati
+
+❌ "Unauthorized" da Telegram
+   → Verifica il BOT TOKEN in GitHub secrets
+
+❌ "Chat not found"
+   → Invia /start al tuo bot su Telegram
+
+❌ Non ricevo notifiche
+   → Ricordi solo per CAMBI di stato
+   → Se tutto resta SOLD OUT, nessun messaggio (è normale!)
+
+═══════════════════════════════════════════════════════════════
+
+📖 DOCUMENTAZIONE COMPLETA
+
+• Guida setup dettagliata:  SETUP_GUIDE.md
+• README per GitHub:        README_GITHUB.md
+• Documentazione locale:    README.md
+
+═══════════════════════════════════════════════════════════════
+
+✅ FATTO!
+
+Una volta configurato, non devi fare più nulla.
+GitHub Actions controllerà ogni ora e ti avviserà su Telegram! 🎉
+
+═══════════════════════════════════════════════════════════════

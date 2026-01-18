@@ -1,0 +1,18 @@
+{
+  "products": [
+    {
+      "name": "VPS 1000 ARM G11",
+      "url": "https://www.netcup.com/en/server/arm-server/vps-1000-arm-g11-iv-mnz"
+    },
+    {
+      "name": "VPS 2000 ARM G11",
+      "url": "https://www.netcup.com/en/server/arm-server/vps-2000-arm-g11-iv-mnz"
+    },
+    {
+      "name": "VPS 3000 ARM G11",
+      "url": "https://www.netcup.com/en/server/arm-server/vps-3000-arm-g11-mnz"
+    }
+  ],
+  "check_interval_minutes": 60,
+  "log_file": "availability_log.json"
+}

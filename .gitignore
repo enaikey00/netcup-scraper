@@ -1,0 +1,42 @@
+# File e directory da ignorare
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Log files
+*.log
+scraper.log
+
+# JSON logs (se vuoi committare lo storico, rimuovi questa riga)
+availability_log.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test files
+test_*.py
+*_test.py
+
+# Credentials (double check - non commitare mai questi!)
+.env
+secrets.txt
+*.pem
+*.key

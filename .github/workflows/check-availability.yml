@@ -1,0 +1,40 @@
+name: Check VPS Availability
+
+on:
+  schedule:
+    # Esegue ogni ora (puoi modificare il cron)
+    - cron: '0 * * * *'
+  workflow_dispatch:  # Permette di eseguire manualmente dalla UI di GitHub
+
+jobs:
+  check-availability:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements_light.txt
+    
+    - name: Run availability check
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      run: |
+        python scraper_github_actions.py
+    
+    - name: Upload availability log
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: availability-log-${{ github.run_number }}
+        path: availability_log.json
+        retention-days: 30
